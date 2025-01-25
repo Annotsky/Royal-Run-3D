@@ -9,7 +9,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float chunkLength = 10f;
     [SerializeField] private float moveSpeed = 5f;
 
-    private List<GameObject> _chunks = new();
+    private readonly List<GameObject> _chunks = new();
 
     private void Start()
     {
