@@ -46,6 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fencePrefab: {fileID: 215764856652905799, guid: f8040d2152694504ca211702c66a09c8, type: 3}
+  applePrefab: {fileID: 4458853591810838529, guid: d20332873fd575548a3a8f86a265bbdf, type: 3}
+  coinPrefab: {fileID: 1563213876019556981, guid: 138a4250ce85831479edc92a2e859c38, type: 3}
+  appleSpawnChance: 0.3
+  coinSpawnChance: 0.5
   lanes:
   - -2.5
   - 0

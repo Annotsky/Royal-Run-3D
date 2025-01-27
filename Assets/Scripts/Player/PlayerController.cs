@@ -36,5 +36,4 @@ public class PlayerController : MonoBehaviour
         
         _rigidbody.MovePosition(newPosition);
     }
-    
 }
