@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] obstaclePrefabs;
-    [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float spawnDelay = 2f;
-    [SerializeField] private float destroyDelay = 10f;
-    [SerializeField] private Transform obstacleParent;
-    [SerializeField] private float spawnWith = 4f;
+    [SerializeField] private GameObject[] _obstaclePrefabs;
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private float _spawnDelay = 2f;
+    [SerializeField] private float _destroyDelay = 10f;
+    [SerializeField] private Transform _obstacleParent;
+    [SerializeField] private float _spawnWith = 4f;
 
     private void Start()
     {
@@ -19,10 +19,10 @@ public class ObstacleSpawner : MonoBehaviour
     {
         while (true)
         {
-            GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
-            Vector3 spawnPosition = new Vector3(Random.Range(-spawnWith, spawnWith), transform.position.y, transform.position.z);
-            yield return new WaitForSeconds(spawnDelay);
-            Instantiate(obstaclePrefab, spawnPosition, Random.rotation, obstacleParent);
+            GameObject obstaclePrefab = _obstaclePrefabs[Random.Range(0, _obstaclePrefabs.Length)];
+            Vector3 spawnPosition = new Vector3(Random.Range(-_spawnWith, _spawnWith), transform.position.y, transform.position.z);
+            yield return new WaitForSeconds(_spawnDelay);
+            Instantiate(obstaclePrefab, spawnPosition, Random.rotation, _obstacleParent);
         }
     }
 }

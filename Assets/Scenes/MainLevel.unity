@@ -584,11 +584,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59f676fd79fb40469c81395233a6654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkPrefab: {fileID: 1298059247468053207, guid: df479110ef1aa0f4893f4cfe3c2e1803, type: 3}
-  startingChunksAmount: 10
-  chunkParent: {fileID: 831043208}
-  chunkLength: 10
-  moveSpeed: 5
+  _chunkPrefab: {fileID: 1298059247468053207, guid: df479110ef1aa0f4893f4cfe3c2e1803, type: 3}
+  _startingChunksAmount: 10
+  _chunkParent: {fileID: 831043208}
+  _chunkLength: 10
+  _moveSpeed: 5
 --- !u!4 &952000401
 Transform:
   m_ObjectHideFlags: 0
@@ -633,16 +633,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3d7feffe478da4c88b06e333e6fddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefabs:
+  _obstaclePrefabs:
   - {fileID: 2965133209135825817, guid: d8e64cd5984695142a6fdbf1c3c97173, type: 3}
-  - {fileID: 6496034616867311871, guid: 92b8cd74c5d361f44a5118b3b5e522ef, type: 3}
   - {fileID: 2289349140380862741, guid: c8fd905595776044a971f360e547bae3, type: 3}
   - {fileID: 6943509776772250014, guid: 783e75d1884878f43b41d8a657c84cc4, type: 3}
-  spawnPoint: {fileID: 1019407749}
-  spawnDelay: 2
-  destroyDelay: 10
-  obstacleParent: {fileID: 831043208}
-  spawnWith: 4
+  - {fileID: 6496034616867311871, guid: 92b8cd74c5d361f44a5118b3b5e522ef, type: 3}
+  _spawnPoint: {fileID: 1019407749}
+  _spawnDelay: 2
+  _destroyDelay: 10
+  _obstacleParent: {fileID: 831043208}
+  _spawnWith: 4
 --- !u!4 &1019407749
 Transform:
   m_ObjectHideFlags: 0
@@ -753,9 +753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f507a39d5f1e0347b3e2d6f9e79ce78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  xClamp: 3.5
-  zClamp: 2
+  _moveSpeed: 5
+  _xClamp: 3
+  _zClamp: 3
 --- !u!54 &1480866906
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -818,6 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b3c70d630e44b0b0c3529b8cb76924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1943254085}
 --- !u!1001 &1547394201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -878,6 +879,11 @@ PrefabInstance:
 --- !u!4 &1943254084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6410221756858730007, guid: dcbc89efbe5bd174b99e07c76bd0b6bf, type: 3}
+  m_PrefabInstance: {fileID: 1547394201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1943254085 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1014860696115371117, guid: dcbc89efbe5bd174b99e07c76bd0b6bf, type: 3}
   m_PrefabInstance: {fileID: 1547394201}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

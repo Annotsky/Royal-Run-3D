@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float xClamp = 3f;
-    [SerializeField] private float zClamp = 3f;
+    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _xClamp = 3f;
+    [SerializeField] private float _zClamp = 3f;
     
     private Vector2 _movement;
     private Rigidbody _rigidbody;
@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 currentPosition = _rigidbody.position;
         Vector3 moveDirection = new Vector3(_movement.x, 0, _movement.y);
-        Vector3 newPosition = currentPosition + moveDirection * (moveSpeed * Time.fixedDeltaTime);
+        Vector3 newPosition = currentPosition + moveDirection * (_moveSpeed * Time.fixedDeltaTime);
         
-        newPosition.x = Mathf.Clamp(newPosition.x, -xClamp, xClamp);
-        newPosition.z = Mathf.Clamp(newPosition.z, -zClamp, zClamp);
+        newPosition.x = Mathf.Clamp(newPosition.x, -_xClamp, _xClamp);
+        newPosition.z = Mathf.Clamp(newPosition.z, -_zClamp, _zClamp);
         
         _rigidbody.MovePosition(newPosition);
     }
