@@ -13,11 +13,9 @@ public abstract class Pickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(PlayerString))
-        {
-            OnPickup();
-            Destroy(gameObject);
-        }
+        if (!other.CompareTag(PlayerString)) return;
+        OnPickup();
+        Destroy(gameObject);
     }
     
     protected abstract void OnPickup();

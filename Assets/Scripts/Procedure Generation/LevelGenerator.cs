@@ -1,16 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class LevelGenerator : MonoBehaviour
-{
+{ //воняет менеджером, зарефакторить, разбить на классы - генерация уровня/скорости
+    [SerializeField] private CameraController _cameraController;
     [SerializeField] private GameObject _chunkPrefab;
     [SerializeField] private int _startingChunksAmount = 10;
     [SerializeField] private Transform _chunkParent;
     [SerializeField] private float _chunkLength = 10f;
-    [SerializeField] private float _moveSpeed = 5f;
+    [Header("Speed")]
+    [SerializeField] private float _moveSpeed = 8f;
+    [SerializeField] private float _minMoveSpeed = 2f;
+    [SerializeField] private float _maxMoveSpeed = 16f;
 
     private readonly List<GameObject> _chunks = new();
+    private Camera _camera;
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
+
+    private void OnEnable()
+    {
+        Apple.OnApplePicked += ChangeChunkMoveSpeed;
+        PlayerCollisionHandler.OnHit += ChangeChunkMoveSpeed;
+    }
 
     private void Start()
     {
@@ -20,6 +35,19 @@ public class LevelGenerator : MonoBehaviour
     private void Update()
     {
         MoveChunks();
+    }
+
+    private void OnDisable()
+    {
+        Apple.OnApplePicked -= ChangeChunkMoveSpeed;
+        PlayerCollisionHandler.OnHit -= ChangeChunkMoveSpeed;
+    }
+
+    private void ChangeChunkMoveSpeed(float speedAmount)
+    {
+        _moveSpeed = Mathf.Clamp(_moveSpeed + speedAmount, _minMoveSpeed, _maxMoveSpeed);
+
+        _cameraController.ChangeCameraFOV(speedAmount);
     }
 
     private void SpawnStartingChunks()
@@ -54,7 +82,7 @@ public class LevelGenerator : MonoBehaviour
             GameObject chunk = _chunks[i];
             chunk.transform.Translate(Vector3.back * (_moveSpeed * Time.deltaTime));
 
-            if (!(chunk.transform.position.z <= Camera.main.transform.position.z - _chunkLength)) continue;
+            if (!(chunk.transform.position.z <= _camera.transform.position.z - _chunkLength)) continue;
             _chunks.Remove(chunk);
             Destroy(chunk);
             SpawnChunk();
