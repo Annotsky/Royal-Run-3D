@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 { //воняет менеджером, зарефакторить, разбить на классы - генерация уровня/скорости
+    [Header("References")]
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private GameObject _chunkPrefab;
-    [SerializeField] private int _startingChunksAmount = 10;
     [SerializeField] private Transform _chunkParent;
+    
+    [Header("Generation")]
+    [SerializeField] private int _startingChunksAmount = 10;
     [SerializeField] private float _chunkLength = 10f;
+    
     [Header("Speed")]
     [SerializeField] private float _moveSpeed = 8f;
     [SerializeField] private float _minMoveSpeed = 2f;
@@ -70,8 +74,7 @@ public class LevelGenerator : MonoBehaviour
     
     private float CalculateSpawnPositionZ()
     {
-        if (_chunks.Count == 0) 
-            return 0;
+        if (_chunks.Count == 0) return 0;
         return _chunks[^1].transform.position.z + _chunkLength;
     }
 
