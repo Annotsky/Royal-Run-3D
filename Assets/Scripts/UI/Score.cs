@@ -4,6 +4,7 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private GameOverHandler _gameOverHandler;
 
     private int _score;
 
@@ -19,6 +20,7 @@ public class Score : MonoBehaviour
 
     private void AddScore(int amount)
     {
+        if (_gameOverHandler.IsGameOver) return;
         _score += amount;
         _scoreText.text = _score.ToString();
     }

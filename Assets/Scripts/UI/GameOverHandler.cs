@@ -1,28 +1,20 @@
 using UnityEngine;
 
-public class GameOver : MonoBehaviour
+public class GameOverHandler : MonoBehaviour
 {
     [SerializeField] private GameObject _gameOverText;
     [SerializeField] private PlayerController _playerController;
-    
-    private Timer _timer;
+
     public bool IsGameOver { get; private set; }
 
-    private void Awake()
+    private void OnEnable()
     {
-        _timer = GetComponent<Timer>();
+        Timer.OnTimeExpired += ActivateGameOver;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        if (IsGameOver)
-        {
-            return;
-        }
-        if (_timer.TimeLeft <= 0)
-        {
-            ActivateGameOver();
-        }
+        Timer.OnTimeExpired -= ActivateGameOver;
     }
 
     private void ActivateGameOver()
