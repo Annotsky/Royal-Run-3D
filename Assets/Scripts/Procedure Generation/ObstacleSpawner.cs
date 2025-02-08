@@ -20,7 +20,9 @@ public class ObstacleSpawner : MonoBehaviour
         while (true)
         {
             GameObject obstaclePrefab = _obstaclePrefabs[Random.Range(0, _obstaclePrefabs.Length)];
-            Vector3 spawnPosition = new Vector3(Random.Range(-_spawnWith, _spawnWith), transform.position.y, transform.position.z);
+            Vector3 spawnPosition = new Vector3(Random.Range(-_spawnWith, _spawnWith), 
+                                                             transform.position.y,
+                                                             transform.position.z);
             yield return new WaitForSeconds(_spawnDelay);
             Instantiate(obstaclePrefab, spawnPosition, Random.rotation, _obstacleParent);
         }

@@ -6,13 +6,13 @@ public class Chunk : MonoBehaviour
     [SerializeField] private GameObject _fencePrefab;
     [SerializeField] private GameObject _applePrefab;
     [SerializeField] private GameObject _coinPrefab;
-    
+
     [SerializeField] private float _appleSpawnChance = 0.3f;
     [SerializeField] private float _coinSpawnChance = 0.5f;
     [SerializeField] private float _coinSeparationLenght = 2f;
-    
-    [SerializeField] private float[] _lanes = { -2.5f, 0f, 2,5f };
-    
+
+    [SerializeField] private float[] _lanes = { -2.5f, 0f, 2, 5f };
+
     private readonly List<int> _availableLanes = new() { 0, 1, 2 };
 
     private void Start()
@@ -40,7 +40,7 @@ public class Chunk : MonoBehaviour
     private void SpawnApple()
     {
         if (Random.value > _appleSpawnChance || _availableLanes.Count <= 0) return;
-        
+
         int selectedLane = SelectLane();
 
         Vector3 spawnPosition = new Vector3(_lanes[selectedLane], transform.position.y, transform.position.z);
@@ -55,9 +55,9 @@ public class Chunk : MonoBehaviour
 
         const int maxCoinsToSpawn = 5;
         int coinsToSpawn = Random.Range(0, maxCoinsToSpawn);
-        
+
         float topOfChunkZPosition = transform.position.z + (_coinSeparationLenght * 2f);
-        
+
         for (int i = 0; i < coinsToSpawn; i++)
         {
             float spawnPositionZ = topOfChunkZPosition - i * _coinSeparationLenght;

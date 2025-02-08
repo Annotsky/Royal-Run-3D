@@ -2,23 +2,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
-{ //воняет менеджером, зарефакторить, разбить на классы - генерация уровня/скорости
-    [Header("References")]
-    [SerializeField] private CameraController _cameraController;
-    [SerializeField] private GameObject _chunkPrefab;
+{
+    //воняет менеджером, зарефакторить, разбить на классы - генерация уровня/скорости
+    [Header("References")] [SerializeField]
+    private CameraController _cameraController;
+
+    [SerializeField] private GameObject[] _chunkPrefabs;
+    [SerializeField] private GameObject _checkpointChunkPrefab;
     [SerializeField] private Transform _chunkParent;
-    
-    [Header("Generation")]
-    [SerializeField] private int _startingChunksAmount = 10;
+
+    [Header("Generation")] [SerializeField]
+    private int _startingChunksAmount = 10;
+
     [SerializeField] private float _chunkLength = 10f;
-    
-    [Header("Speed")]
-    [SerializeField] private float _moveSpeed = 8f;
+    [SerializeField] private int _checkpointChunkInterval = 10;
+
+    [Header("Speed")] [SerializeField] private float _moveSpeed = 8f;
     [SerializeField] private float _minMoveSpeed = 2f;
     [SerializeField] private float _maxMoveSpeed = 16f;
 
     private readonly List<GameObject> _chunks = new();
     private Camera _camera;
+    private int _chunksSpawned;
 
     private void Awake()
     {
@@ -31,6 +36,12 @@ public class LevelGenerator : MonoBehaviour
         PlayerCollisionHandler.OnHit += ChangeChunkMoveSpeed;
     }
 
+    private void OnDisable()
+    {
+        Apple.OnApplePicked -= ChangeChunkMoveSpeed;
+        PlayerCollisionHandler.OnHit -= ChangeChunkMoveSpeed;
+    }
+
     private void Start()
     {
         SpawnStartingChunks();
@@ -39,12 +50,6 @@ public class LevelGenerator : MonoBehaviour
     private void Update()
     {
         MoveChunks();
-    }
-
-    private void OnDisable()
-    {
-        Apple.OnApplePicked -= ChangeChunkMoveSpeed;
-        PlayerCollisionHandler.OnHit -= ChangeChunkMoveSpeed;
     }
 
     private void ChangeChunkMoveSpeed(float speedAmount)
@@ -65,13 +70,25 @@ public class LevelGenerator : MonoBehaviour
     private void SpawnChunk()
     {
         float spawnPositionZ = CalculateSpawnPositionZ();
-        
         Vector3 chunkSpawnPosition = new Vector3(transform.position.x, transform.position.y, spawnPositionZ);
-        GameObject newChunk = Instantiate(_chunkPrefab, chunkSpawnPosition, Quaternion.identity, _chunkParent);
-
+        GameObject chunkToSpawn = ChooseChunkToSpawn();
+        GameObject newChunk = Instantiate(chunkToSpawn, chunkSpawnPosition, Quaternion.identity, _chunkParent);
         _chunks.Add(newChunk);
+        _chunksSpawned++;
     }
-    
+
+    private GameObject ChooseChunkToSpawn()
+    {
+        GameObject chunkToSpawn;
+
+        if (_chunksSpawned % _checkpointChunkInterval == 0 && _chunksSpawned != 0)
+            chunkToSpawn = _checkpointChunkPrefab;
+        else
+            chunkToSpawn = _chunkPrefabs[Random.Range(0, _chunkPrefabs.Length)];
+
+        return chunkToSpawn;
+    }
+
     private float CalculateSpawnPositionZ()
     {
         if (_chunks.Count == 0) return 0;

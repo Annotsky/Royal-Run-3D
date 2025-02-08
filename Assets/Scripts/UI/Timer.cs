@@ -6,10 +6,21 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private float _startTime = 5f;
+    [SerializeField] private float _timeToIncrease = 5;
 
     public static event UnityAction OnTimeExpired;
 
     private float _timeLeft;
+
+    private void OnEnable()
+    {
+        Checkpoint.OnPlayerEnters += IncreaseTime;
+    }
+
+    private void OnDisable()
+    {
+        Checkpoint.OnPlayerEnters -= IncreaseTime;
+    }
 
     private void Start()
     {
@@ -20,6 +31,11 @@ public class Timer : MonoBehaviour
     {
         DecreaseTime();
         CheckForTimeExpired();
+    }
+
+    private void IncreaseTime()
+    {
+        _timeLeft += _timeToIncrease;
     }
 
     private void DecreaseTime()

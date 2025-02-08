@@ -6,9 +6,9 @@ public class PlayerCollisionHandler : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private float _collisionCooldown = 1f;
     [SerializeField] private float _adjustMoveSpeedAmount = -2f;
-    
+
     private static readonly int Hit = Animator.StringToHash("Hit");
-    
+
     private float _cooldownTimer;
 
     public static event UnityAction<float> OnHit;

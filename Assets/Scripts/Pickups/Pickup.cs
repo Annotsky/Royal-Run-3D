@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Pickup : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed = 100f;
-    
+
     private const string PlayerString = "Player";
 
     private void Update()
@@ -17,6 +17,6 @@ public abstract class Pickup : MonoBehaviour
         OnPickup();
         Destroy(gameObject);
     }
-    
+
     protected abstract void OnPickup();
 }
