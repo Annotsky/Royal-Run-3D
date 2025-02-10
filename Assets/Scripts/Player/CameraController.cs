@@ -32,7 +32,6 @@ public class CameraController : MonoBehaviour
     {
         float startFOV = _cinemachineCamera.Lens.FieldOfView;
         float targetFOV = Mathf.Clamp(startFOV + speedAmount * _zoomSpeedModifer, _minFOV, _maxFOV);
-
         float elapsedTime = 0f;
 
         while (elapsedTime < _zoomDuration)

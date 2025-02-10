@@ -476,7 +476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 566194103400238707, guid: 9e3740eea4654ff4595607f1fa3a28c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 566194103400238707, guid: 9e3740eea4654ff4595607f1fa3a28c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -602,7 +602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 566194103400238707, guid: 9e3740eea4654ff4595607f1fa3a28c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 566194103400238707, guid: 9e3740eea4654ff4595607f1fa3a28c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -757,6 +757,10 @@ PrefabInstance:
     - target: {fileID: 374852696803022761, guid: df479110ef1aa0f4893f4cfe3c2e1803, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 604351687601121281, guid: df479110ef1aa0f4893f4cfe3c2e1803, type: 3}
+      propertyPath: _appleSpawnChance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1298059247468053207, guid: df479110ef1aa0f4893f4cfe3c2e1803, type: 3}
       propertyPath: m_Name

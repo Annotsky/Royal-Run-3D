@@ -1,0 +1,5 @@
+1. Jumps
+2. More sounds
+3. Coin combos
+4. Start screen, game over UI button
+5. LevelGenerator.cs refactor
